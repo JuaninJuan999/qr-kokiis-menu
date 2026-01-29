@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Menú digital Kokiis - Comidas rápidas en Bucaramanga">
     <title>Kokiis Menu - Comidas Rápidas</title>
     <style>
         * {
@@ -13,56 +14,152 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8b3d 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 15px;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             background: white;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            padding: 30px;
+            overflow: hidden;
         }
 
+        /* Header con logo */
         header {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
             text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid #ff6b6b;
+            padding: 30px 20px;
+            color: white;
+            position: relative;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            overflow: hidden;
+            background: white;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         h1 {
-            color: #2d3436;
             font-size: 2.5em;
             margin-bottom: 10px;
-            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             letter-spacing: 2px;
         }
 
         .subtitle {
-            color: #636e72;
             font-size: 1.1em;
-            font-style: italic;
+            opacity: 0.95;
         }
 
-        .menu-section {
-            margin-bottom: 50px;
+        /* Botón de WhatsApp Flotante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
+            cursor: pointer;
+            z-index: 1000;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.7);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
+            }
+            50% {
+                box-shadow: 0 8px 30px rgba(37, 211, 102, 0.8);
+            }
+        }
+
+        /* Botón de pedido principal */
+        .order-button {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            padding: 18px 40px;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+            text-decoration: none;
+            margin: 20px auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .order-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        .order-section {
+            text-align: center;
+            padding: 30px 20px;
+            background: #f8f9fa;
+        }
+
+        /* Contenido del menú */
+        .content {
+            padding: 30px 20px;
+        }
+
+        .promo-banner {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: white;
+            font-size: 1.4em;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
         }
 
         .section-title {
-            color: #ff6b6b;
+            color: #ff6b35;
             font-size: 1.8em;
-            margin-bottom: 20px;
+            margin: 30px 0 20px 0;
             padding-left: 15px;
-            border-left: 5px solid #ff6b6b;
+            border-left: 5px solid #ff6b35;
         }
 
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             margin-bottom: 30px;
         }
@@ -74,6 +171,7 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.15);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
+            background: white;
         }
 
         .menu-item:hover {
@@ -92,36 +190,34 @@
             transform: scale(1.05);
         }
 
-        .promo-banner {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            text-align: center;
-            color: white;
-            font-size: 1.3em;
-            font-weight: bold;
-            box-shadow: 0 8px 20px rgba(245, 87, 108, 0.4);
-        }
-
         footer {
             text-align: center;
-            padding-top: 30px;
-            border-top: 2px solid #dfe6e9;
-            color: #636e72;
-            font-size: 0.9em;
+            padding: 30px 20px;
+            background: #2d3436;
+            color: white;
         }
 
-        /* Modal para ver imagen en grande */
+        footer p {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        footer a {
+            color: #25D366;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Modal para ver imágenes grandes */
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
+            z-index: 2000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.9);
+            background-color: rgba(0,0,0,0.95);
             padding: 20px;
         }
 
@@ -131,6 +227,12 @@
             max-width: 90%;
             max-height: 90%;
             border-radius: 10px;
+            animation: zoom 0.3s;
+        }
+
+        @keyframes zoom {
+            from {transform: scale(0.8); opacity: 0;}
+            to {transform: scale(1); opacity: 1;}
         }
 
         .close-modal {
@@ -138,22 +240,46 @@
             top: 30px;
             right: 45px;
             color: white;
-            font-size: 40px;
+            font-size: 50px;
             font-weight: bold;
             cursor: pointer;
+            z-index: 2001;
+        }
+
+        .close-modal:hover {
+            color: #ff6b35;
         }
 
         @media (max-width: 768px) {
             h1 {
-                font-size: 1.8em;
+                font-size: 2em;
             }
             
             .menu-grid {
                 grid-template-columns: 1fr;
             }
             
-            .container {
-                padding: 20px;
+            .whatsapp-float {
+                width: 60px;
+                height: 60px;
+                font-size: 30px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .order-button {
+                font-size: 1.1em;
+                padding: 15px 30px;
+            }
+        }
+
+        /* Optimización para impresión de QR */
+        @media print {
+            .whatsapp-float {
+                display: none;
+            }
+            body {
+                background: white;
             }
         }
     </style>
@@ -161,60 +287,85 @@
 <body>
     <div class="container">
         <header>
-            <h1>🍔 KOKIIS MENU 🍟</h1>
-            <p class="subtitle">Comidas Rápidas - Menú Digital</p>
+            <div class="logo">
+                <img src="image.jpg" alt="Kokiis Logo">
+            </div>
+            <h1>🍔 KOKIIS 🍟</h1>
+            <p class="subtitle">Comidas Rápidas de Calidad</p>
         </header>
 
-        <!-- Promociones Destacadas -->
-        <section class="menu-section">
+        <!-- Botón principal de pedido -->
+        <div class="order-section">
+            <a href="https://wa.me/573001234567?text=Hola!%20Quiero%20hacer%20un%20pedido%20del%20menú%20Kokiis" 
+               class="order-button" 
+               target="_blank">
+                <span>📱</span> HACER PEDIDO POR WHATSAPP
+            </a>
+            <p style="color: #636e72; margin-top: 15px;">
+                ¡Haz clic para ordenar ahora mismo!
+            </p>
+        </div>
+
+        <div class="content">
+            <!-- Promociones -->
             <div class="promo-banner">
                 ⭐ ¡PROMOCIONES ESPECIALES! ⭐
             </div>
             <div class="menu-grid">
                 <div class="menu-item" onclick="openModal('post.jpeg')">
-                    <img src="post.jpeg" alt="Promoción Especial">
+                    <img src="post.jpeg" alt="Promoción Especial" loading="lazy">
                 </div>
                 <div class="menu-item" onclick="openModal('2.jpeg')">
-                    <img src="2.jpeg" alt="Promoción 2">
+                    <img src="2.jpeg" alt="Promoción 2" loading="lazy">
                 </div>
                 <div class="menu-item" onclick="openModal('promosalchipapas.jpeg')">
-                    <img src="promosalchipapas.jpeg" alt="Promo Salchipapas">
+                    <img src="promosalchipapas.jpeg" alt="Promo Salchipapas" loading="lazy">
                 </div>
             </div>
-        </section>
 
-        <!-- Menú Completo -->
-        <section class="menu-section">
-            <h2 class="section-title">Nuestro Menú</h2>
+            <!-- Menú Completo -->
+            <h2 class="section-title">Nuestro Menú Completo</h2>
             <div class="menu-grid">
                 <div class="menu-item" onclick="openModal('lashermanas.jpeg')">
-                    <img src="lashermanas.jpeg" alt="Las Hermanas">
+                    <img src="lashermanas.jpeg" alt="Las Hermanas" loading="lazy">
                 </div>
                 <div class="menu-item" onclick="openModal('menuhamburguesa.jpeg')">
-                    <img src="menuhamburguesa.jpeg" alt="Menú Hamburguesas">
+                    <img src="menuhamburguesa.jpeg" alt="Menú Hamburguesas" loading="lazy">
                 </div>
                 <div class="menu-item" onclick="openModal('menupapas.jpeg')">
-                    <img src="menupapas.jpeg" alt="Menú Papas">
+                    <img src="menupapas.jpeg" alt="Menú Papas" loading="lazy">
                 </div>
                 <div class="menu-item" onclick="openModal('menupicadas.jpeg')">
-                    <img src="menupicadas.jpeg" alt="Menú Picadas">
+                    <img src="menupicadas.jpeg" alt="Menú Picadas" loading="lazy">
                 </div>
                 <div class="menu-item" onclick="openModal('menuperros.jpeg')">
-                    <img src="menuperros.jpeg" alt="Menú Perros">
+                    <img src="menuperros.jpeg" alt="Menú Perros" loading="lazy">
                 </div>
             </div>
-        </section>
+        </div>
 
         <footer>
-            <p>📍 Bucaramanga, Santander</p>
-            <p>📞 ¡Haz tu pedido ahora!</p>
+            <p>📍 Bucaramanga, Santander, Colombia</p>
+            <p>📱 WhatsApp: <a href="https://wa.me/573001234567" target="_blank">300 123 4567</a></p>
+            <p>🕐 Horario: Lunes a Domingo</p>
+            <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">
+                © 2026 Kokiis - Comidas Rápidas
+            </p>
         </footer>
     </div>
 
-    <!-- Modal para ver imágenes en grande -->
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/573001234567?text=Hola!%20Quiero%20hacer%20un%20pedido%20del%20menú%20Kokiis" 
+       class="whatsapp-float" 
+       target="_blank"
+       aria-label="Contactar por WhatsApp">
+        📱
+    </a>
+
+    <!-- Modal para ver imágenes grandes -->
     <div id="imageModal" class="modal" onclick="closeModal()">
         <span class="close-modal">&times;</span>
-        <img class="modal-content" id="modalImage">
+        <img class="modal-content" id="modalImage" alt="Menú ampliado">
     </div>
 
     <script>
@@ -223,13 +374,15 @@
             const modalImg = document.getElementById('modalImage');
             modal.style.display = 'block';
             modalImg.src = imageSrc;
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
             document.getElementById('imageModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
 
-        // Cerrar con tecla ESC
+        // Cerrar modal con tecla ESC
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeModal();
