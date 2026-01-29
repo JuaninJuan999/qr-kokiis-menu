@@ -2,38 +2,240 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Menú</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kokiis Menu - Comidas Rápidas</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 30px;
+        }
+
+        header {
             text-align: center;
-            background-color: #fff4e6;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #ff6b6b;
         }
+
         h1 {
-            color: #c0392b;
+            color: #2d3436;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
-        img {
-            width: 300px;
-            margin: 12px;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+        .subtitle {
+            color: #636e72;
+            font-size: 1.1em;
+            font-style: italic;
+        }
+
+        .menu-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            color: #ff6b6b;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 5px solid #ff6b6b;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .menu-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .promo-banner {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: white;
+            font-size: 1.3em;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(245, 87, 108, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 2px solid #dfe6e9;
+            color: #636e72;
+            font-size: 0.9em;
+        }
+
+        /* Modal para ver imagen en grande */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            padding: 20px;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 30px;
+            right: 45px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>🍔 KOKIIS MENU 🍟</h1>
+            <p class="subtitle">Comidas Rápidas - Menú Digital</p>
+        </header>
 
-<h1>🍔 Menú de Comidas Rápidas 🍟</h1>
+        <!-- Promociones Destacadas -->
+        <section class="menu-section">
+            <div class="promo-banner">
+                ⭐ ¡PROMOCIONES ESPECIALES! ⭐
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item" onclick="openModal('post.jpeg')">
+                    <img src="post.jpeg" alt="Promoción Especial">
+                </div>
+                <div class="menu-item" onclick="openModal('2.jpeg')">
+                    <img src="2.jpeg" alt="Promoción 2">
+                </div>
+                <div class="menu-item" onclick="openModal('promosalchipapas.jpeg')">
+                    <img src="promosalchipapas.jpeg" alt="Promo Salchipapas">
+                </div>
+            </div>
+        </section>
 
-<img src="post.jpeg">
-<img src="2.jpeg">
-<img src="promosalchipapas.jpeg">
+        <!-- Menú Completo -->
+        <section class="menu-section">
+            <h2 class="section-title">Nuestro Menú</h2>
+            <div class="menu-grid">
+                <div class="menu-item" onclick="openModal('lashermanas.jpeg')">
+                    <img src="lashermanas.jpeg" alt="Las Hermanas">
+                </div>
+                <div class="menu-item" onclick="openModal('menuhamburguesa.jpeg')">
+                    <img src="menuhamburguesa.jpeg" alt="Menú Hamburguesas">
+                </div>
+                <div class="menu-item" onclick="openModal('menupapas.jpeg')">
+                    <img src="menupapas.jpeg" alt="Menú Papas">
+                </div>
+                <div class="menu-item" onclick="openModal('menupicadas.jpeg')">
+                    <img src="menupicadas.jpeg" alt="Menú Picadas">
+                </div>
+                <div class="menu-item" onclick="openModal('menuperros.jpeg')">
+                    <img src="menuperros.jpeg" alt="Menú Perros">
+                </div>
+            </div>
+        </section>
 
-<img src="lashermanas.jpeg">
+        <footer>
+            <p>📍 Bucaramanga, Santander</p>
+            <p>📞 ¡Haz tu pedido ahora!</p>
+        </footer>
+    </div>
 
-<img src="menuhamburguesa.jpeg">
-<img src="menupapas.jpeg">
-<img src="menupicadas.jpeg">
-<img src="menuperros.jpeg">
+    <!-- Modal para ver imágenes en grande -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
 
+    <script>
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'block';
+            modalImg.src = imageSrc;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        // Cerrar con tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
+
