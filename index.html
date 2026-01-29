@@ -28,24 +28,26 @@
             overflow: hidden;
         }
 
-        /* Header con logo completo */
+        /* Header con logo expandido */
         header {
             background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
             text-align: center;
-            padding: 40px 20px;
+            padding: 20px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             position: relative;
         }
 
-        .logo {
-            max-width: 100%;
-            width: auto;
-            height: auto;
-            margin: 0 auto;
-        }
-
-        .logo img {
+        .logo-container img {
             width: 100%;
-            max-width: 600px;
+            max-width: 500px;
             height: auto;
             display: block;
             margin: 0 auto;
@@ -236,8 +238,8 @@
         }
 
         @media (max-width: 768px) {
-            .logo img {
-                max-width: 350px;
+            .logo-container img {
+                max-width: 280px;
             }
             
             .menu-grid {
@@ -258,7 +260,7 @@
             }
 
             header {
-                padding: 30px 15px;
+                padding: 15px 10px;
             }
         }
 
@@ -276,8 +278,321 @@
 <body>
     <div class="container">
         <header>
-            <div class="logo">
-                <img src="logo/logo.jpeg" alt="Kokiis - Comidas Rápidas">
+            <div class="logo-container">
+                <img src="logo/logo.jpeg" alt="Koky's - Comidas Rápidas">
+            </div>
+        </header>
+
+        <!-- Botón principal de pedido -->
+        <div class="order-section">
+            <a href="https://wa.me/573025683367?text=Hola!%20Quiero%20hacer%20un%20pedido%20del%20menú%20Kokiis" 
+               class="order-button" 
+               target="_blank">
+                <span>📱</span> HACER PEDIDO POR WHATSAPPEntiendo, no puedo generar la imagen. Pero puedo ayudarte de dos formas:
+
+## Opción 1: Redimensionar con CSS (Recomendado - Más fácil) ✅
+
+Voy a ajustar el código para que tu logo cuadrado se vea perfecto como banner sin necesidad de editarlo:
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Menú digital Kokiis - Comidas rápidas en Bucaramanga">
+    <title>Kokiis Menu - Comidas Rápidas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8b3d 100%);
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        /* Header con logo - VERSIÓN MEJORADA PARA LOGO CUADRADO */
+        header {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Contenedor del logo que limita el alto */
+        .logo-container {
+            width: 100%;
+            max-height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .logo-container img {
+            width: auto;
+            height: 250px;
+            max-width: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Botón de WhatsApp Flotante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
+            cursor: pointer;
+            z-index: 1000;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.7);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
+            }
+            50% {
+                box-shadow: 0 8px 30px rgba(37, 211, 102, 0.8);
+            }
+        }
+
+        /* Botón de pedido principal */
+        .order-button {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            padding: 18px 40px;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+            text-decoration: none;
+            margin: 20px auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .order-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        .order-section {
+            text-align: center;
+            padding: 30px 20px;
+            background: #f8f9fa;
+        }
+
+        /* Contenido del menú */
+        .content {
+            padding: 30px 20px;
+        }
+
+        .promo-banner {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: white;
+            font-size: 1.4em;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .section-title {
+            color: #ff6b35;
+            font-size: 1.8em;
+            margin: 30px 0 20px 0;
+            padding-left: 15px;
+            border-left: 5px solid #ff6b35;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .menu-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            background: white;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover img {
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: #2d3436;
+            color: white;
+        }
+
+        footer p {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        footer a {
+            color: #25D366;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Modal para ver imágenes grandes */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            padding: 20px;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            animation: zoom 0.3s;
+        }
+
+        @keyframes zoom {
+            from {transform: scale(0.8); opacity: 0;}
+            to {transform: scale(1); opacity: 1;}
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 30px;
+            right: 45px;
+            color: white;
+            font-size: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001;
+        }
+
+        .close-modal:hover {
+            color: #ff6b35;
+        }
+
+        @media (max-width: 768px) {
+            .logo-container {
+                max-height: 180px;
+            }
+
+            .logo-container img {
+                height: 180px;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-float {
+                width: 60px;
+                height: 60px;
+                font-size: 30px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .order-button {
+                font-size: 1.1em;
+                padding: 15px 30px;
+            }
+
+            header {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-container {
+                max-height: 150px;
+            }
+
+            .logo-container img {
+                height: 150px;
+            }
+        }
+
+        /* Optimización para impresión de QR */
+        @media print {
+            .whatsapp-float {
+                display: none;
+            }
+            body {
+                background: white;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="logo/logo.jpeg" alt="Koky's - Comidas Rápidas">
             </div>
         </header>
 
@@ -336,7 +651,7 @@
             <p>📱 WhatsApp: <a href="https://wa.me/573025683367" target="_blank">302 568 3367</a></p>
             <p>🕐 Horario: Lunes a Domingo</p>
             <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">
-                © 2026 Kokiis - Comidas Rápidas
+                © 2026 Koky's - Comidas Rápidas
             </p>
         </footer>
     </div>
