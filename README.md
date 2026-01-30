@@ -48,14 +48,6 @@ qr-kokiis-menu/
 
 text
 
-## 🎨 Capturas de Pantalla
-
-### Desktop
-![Desktop View](https://via.placeholder.com/800x400?text=Desktop+View)
-
-### Móvil
-![Mobile View](https://via.placeholder.com/400x800?text=Mobile+View)
-
 ## 🛠️ Instalación Local
 
 Para trabajar con este proyecto localmente:
