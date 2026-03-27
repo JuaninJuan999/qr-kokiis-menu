@@ -375,8 +375,9 @@
     </div>
 
     <script>
-        // Renderizar menú desde localStorage
-        function renderMenu() {
+        // Renderizar menú cargando pinchos.json dinámicamente
+        async function renderMenu() {
+            // Menú base sin pinchos
             const defaultMenu = [
                 {
                     categoria: "Salchipapas y Choripapas",
@@ -387,13 +388,7 @@
                         { nombre: "Choripapa Especial", descripcion: "Papa en salsa, salchicha, ahumado mozzarella, sal a gusto", precio: "22000" }
                     ]
                 },
-                {
-                    categoria: "Pinchos",
-                    productos: [
-                        { nombre: "Pincho de Pollo", descripcion: "Pincho de pechuga de pollo con vegetales y salsa de la casa", precio: "12000" },
-                        { nombre: "Pincho Mixto", descripcion: "Pincho de pollo y carne con vegetales y salsa especial", precio: "15000" }
-                    ]
-                },
+                // Pinchos se cargará desde pinchos.json
                 {
                     categoria: "Picadas",
                     productos: [
@@ -429,7 +424,32 @@
                     ]
                 }
             ];
-            const menu = JSON.parse(localStorage.getItem('kokys_menu') || JSON.stringify(defaultMenu));
+
+            // Intentar cargar pinchos.json
+            let pinchosCategoria = null;
+            try {
+                const resp = await fetch('pinchos.json');
+                if (resp.ok) {
+                    const pinchos = await resp.json();
+                    // Si el archivo es un array, tomar el primero, si es objeto, usarlo directo
+                    if (Array.isArray(pinchos)) {
+                        pinchosCategoria = pinchos.find(c => c.categoria && c.categoria.toLowerCase().includes('pincho'));
+                    } else if (pinchos.categoria && pinchos.productos) {
+                        pinchosCategoria = pinchos;
+                    }
+                }
+            } catch (e) {
+                // Si falla, no mostrar pinchos
+                pinchosCategoria = null;
+            }
+
+            // Construir menú final
+            let menu = [...defaultMenu];
+            if (pinchosCategoria) {
+                // Insertar pinchos después de la primera categoría
+                menu.splice(1, 0, pinchosCategoria);
+            }
+
             const cont = document.getElementById('menu-dinamico');
             cont.innerHTML = '';
             // Promociones primero si existe
