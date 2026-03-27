@@ -90,6 +90,8 @@
         <button class="save-btn" onclick="saveMenu()">Guardar Cambios</button>
     </div>
     <script>
+            // Limpiar menú guardado para forzar el uso del menú por defecto (útil si el usuario ya tenía un menú viejo sin Pinchos)
+            localStorage.removeItem('kokys_menu');
         // Estructura de ejemplo inicial
         const defaultMenu = [
             {
