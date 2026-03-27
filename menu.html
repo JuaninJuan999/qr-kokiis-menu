@@ -12,6 +12,44 @@
     <link rel="apple-touch-icon" href="logo/favicon.png">
     
     <style>
+                .menu-card {
+                    background: #fff;
+                    border-radius: 15px;
+                    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+                    padding: 24px 20px 18px 20px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    transition: transform 0.3s, box-shadow 0.3s;
+                    position: relative;
+                    min-height: 170px;
+                }
+                .menu-card:hover {
+                    transform: translateY(-8px) scale(1.03);
+                    box-shadow: 0 15px 35px rgba(0,0,0,0.22);
+                }
+                .menu-card h3 {
+                    color: #ff6b35;
+                    font-size: 1.25em;
+                    margin-bottom: 8px;
+                    font-weight: bold;
+                }
+                .menu-card p {
+                    color: #636e72;
+                    font-size: 1em;
+                    margin-bottom: 12px;
+                }
+                .menu-card .price {
+                    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+                    color: #fff;
+                    font-weight: bold;
+                    font-size: 1.1em;
+                    padding: 6px 18px;
+                    border-radius: 30px;
+                    align-self: flex-end;
+                    margin-top: auto;
+                    box-shadow: 0 2px 8px rgba(255,107,53,0.13);
+                }
         * {
             margin: 0;
             padding: 0;
@@ -313,38 +351,114 @@
                 ⭐ ¡PROMOCIONES ESPECIALES! ⭐
             </div>
             <div class="menu-grid">
-                <div class="menu-item" onclick="openModal('post.jpeg')">
-                    <img src="post.jpeg" alt="Promoción Especial" loading="lazy">
+                <div class="menu-card">
+                    <h3>Las Hermanas</h3>
+                    <p>1 Hamburguesa Super KOKY's + 1 Hamburguesa especial</p>
+                    <span class="price">$50.000</span>
                 </div>
-                <div class="menu-item" onclick="openModal('2.jpeg')">
-                    <img src="2.jpeg" alt="Promoción 2" loading="lazy">
+                <div class="menu-card">
+                    <h3>2 Perros Rancheros + Gaseosa Mini</h3>
+                    <p>Combo especial</p>
+                    <span class="price">$40.000</span>
                 </div>
-                <div class="menu-item" onclick="openModal('promosalchipapas.jpeg')">
-                    <img src="promosalchipapas.jpeg" alt="Promo Salchipapas" loading="lazy">
-                </div>
-                <div class="menu-item" onclick="openModal('lashermanas.jpeg')">
-                    <img src="lashermanas.jpeg" alt="Las Hermanas" loading="lazy">
+                <div class="menu-card">
+                    <h3>2 Salchipapas Especiales + 2 Gaseosas Mini</h3>
+                    <p>De Locura</p>
+                    <span class="price">$35.000</span>
                 </div>
             </div>
 
-            <!-- Menú Completo -->
-            <h2 class="section-title">Nuestro Menú Completo</h2>
+            <h2 class="section-title">Salchipapas y Choripapas</h2>
             <div class="menu-grid">
-                <div class="menu-item" onclick="openModal('menuhamburguesa.jpeg')">
-                    <img src="menuhamburguesa.jpeg" alt="Menú Hamburguesas" loading="lazy">
+                <div class="menu-card">
+                    <h3>Salchipapa Sencillo</h3>
+                    <p>Papa francesa, salchicha tradicional</p>
+                    <span class="price">$15.000</span>
                 </div>
-                <div class="menu-item" onclick="openModal('menupapas.jpeg')">
-                    <img src="menupapas.jpeg" alt="Menú Papas" loading="lazy">
+                <div class="menu-card">
+                    <h3>Salchipapa Especial</h3>
+                    <p>Papa en salsa, salchicha tradicional</p>
+                    <span class="price">$20.000</span>
                 </div>
-                <div class="menu-item" onclick="openModal('menupicadas.jpeg')">
-                    <img src="menupicadas.jpeg" alt="Menú Picadas" loading="lazy">
+                <div class="menu-card">
+                    <h3>Choripapa Sencillo</h3>
+                    <p>Papa francesa, chorizo ahumado</p>
+                    <span class="price">$18.000</span>
                 </div>
-                <div class="menu-item" onclick="openModal('menuperros.jpeg')">
-                    <img src="menuperros.jpeg" alt="Menú Perros" loading="lazy">
+                <div class="menu-card">
+                    <h3>Choripapa Especial</h3>
+                    <p>Papa en salsa, salchicha, ahumado mozzarella, sal a gusto</p>
+                    <span class="price">$22.000</span>
                 </div>
             </div>
-        </div>
 
+            <h2 class="section-title">Picadas</h2>
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <h3>Picada Personal</h3>
+                    <p>Carne, pollo, salchicha, papa francesa, queso rallado, salsas, vegetales frescos</p>
+                    <span class="price">$20.000</span>
+                </div>
+                <div class="menu-card">
+                    <h3>Picada Grande</h3>
+                    <p>Carne, pollo, salchicha, papa francesa, queso, chorizo, verduras frescas, mozzarella</p>
+                    <span class="price">$40.000</span>
+                </div>
+            </div>
+
+            <h2 class="section-title">Perros Calientes</h2>
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <h3>Perro Tradicional</h3>
+                    <p>Pan brioche, salchicha, papa</p>
+                    <span class="price">$15.000</span>
+                </div>
+                <div class="menu-card">
+                    <h3>Perro Especial Pollo</h3>
+                    <p>En salsa tártara, papa, cebolla</p>
+                    <span class="price">$20.000</span>
+                </div>
+                <div class="menu-card">
+                    <h3>Perro Ranchero Chorizo</h3>
+                    <p>Queso ahumado, tocineta ahumada, cebolla, grillet</p>
+                    <span class="price">$25.000</span>
+                </div>
+                <div class="menu-card">
+                    <h3>Perro Super KOKY's Carne</h3>
+                    <p>Queso en salsa tártara, papa rápida, tocineta con chorizo, papa francesa</p>
+                    <span class="price">$30.000</span>
+                </div>
+            </div>
+
+            <h2 class="section-title">Hamburguesas</h2>
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <h3>Hamburguesa Tradicional</h3>
+                    <p>Mozza 125g, jamón ahumado, broche</p>
+                    <span class="price">$18.000</span>
+                </div>
+                <div class="menu-card">
+                    <h3>Carne 125g Mix Tártara</h3>
+                    <p>Jamón ahumado, queso mozzarella, papa</p>
+                    <span class="price">$22.000</span>
+                </div>
+                <div class="menu-card">
+                    <h3>Carne 125g Especial</h3>
+                    <p>Especial de la casa</p>
+                    <span class="price">$27.000</span>
+                </div>
+                <div class="menu-card">
+                    <h3>Chorizo Doble</h3>
+                    <p>2 Carne 125g, tocineta ahumada</p>
+                    <span class="price">$27.000</span>
+                </div>
+                <div class="menu-card">
+                    <h3>Chorizo Fresco Pan KOKY's</h3>
+                    <p>Tocinetas 125g, filete de pollo, mozzarella, chorizo, pollo en salsa tártara</p>
+                    <span class="price">$32.000</span>
+                </div>
+
+                
         <footer>
             <p>📍 Bucaramanga, Santander, Colombia</p>
             <p>📱 WhatsApp: <a href="https://wa.me/573025683367" target="_blank">302 568 3367</a></p>

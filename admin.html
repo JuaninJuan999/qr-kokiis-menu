@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Menú Koky's</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+            padding: 32px 24px;
+        }
+        h1 {
+            color: #ff6b35;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .product-list {
+            margin-bottom: 30px;
+        }
+        .product-item {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .product-item input {
+            padding: 6px 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
+        .product-item button {
+            background: #ff6b35;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 12px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .product-item button:hover {
+            background: #e55a1e;
+        }
+        .add-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .add-form input {
+            flex: 1;
+        }
+        .save-btn {
+            background: #25D366;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 10px;
+            display: block;
+            margin-left: auto;
+        }
+        .save-btn:hover {
+            background: #128C7E;
+        }
+        .category-title {
+            color: #ff6b35;
+            font-size: 1.2em;
+            margin: 24px 0 10px 0;
+            border-left: 4px solid #ff6b35;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Menú Koky's</h1>
+        <div id="menu-editor"></div>
+        <button class="save-btn" onclick="saveMenu()">Guardar Cambios</button>
+    </div>
+    <script>
+        // Estructura de ejemplo inicial
+        const defaultMenu = [
+            {
+                categoria: "Salchipapas y Choripapas",
+                productos: [
+                    { nombre: "Salchipapa Sencillo", descripcion: "Papa francesa, salchicha tradicional", precio: "15000" },
+                    { nombre: "Salchipapa Especial", descripcion: "Papa en salsa, salchicha tradicional", precio: "20000" },
+                    { nombre: "Choripapa Sencillo", descripcion: "Papa francesa, chorizo ahumado", precio: "18000" },
+                    { nombre: "Choripapa Especial", descripcion: "Papa en salsa, salchicha, ahumado mozzarella, sal a gusto", precio: "22000" }
+                ]
+            },
+            {
+                categoria: "Picadas",
+                productos: [
+                    { nombre: "Picada Personal", descripcion: "Carne, pollo, salchicha, papa francesa, queso rallado, salsas, vegetales frescos", precio: "20000" },
+                    { nombre: "Picada Grande", descripcion: "Carne, pollo, salchicha, papa francesa, queso, chorizo, verduras frescas, mozzarella", precio: "40000" }
+                ]
+            },
+            {
+                categoria: "Perros Calientes",
+                productos: [
+                    { nombre: "Perro Tradicional", descripcion: "Pan brioche, salchicha, papa", precio: "15000" },
+                    { nombre: "Perro Especial Pollo", descripcion: "En salsa tártara, papa, cebolla", precio: "20000" },
+                    { nombre: "Perro Ranchero Chorizo", descripcion: "Queso ahumado, tocineta ahumada, cebolla, grillet", precio: "25000" },
+                    { nombre: "Perro Super KOKY's Carne", descripcion: "Queso en salsa tártara, papa rápida, tocineta con chorizo, papa francesa", precio: "30000" }
+                ]
+            },
+            {
+                categoria: "Hamburguesas",
+                productos: [
+                    { nombre: "Hamburguesa Tradicional", descripcion: "Mozza 125g, jamón ahumado, broche", precio: "18000" },
+                    { nombre: "Carne 125g Mix Tártara", descripcion: "Jamón ahumado, queso mozzarella, papa", precio: "22000" },
+                    { nombre: "Carne 125g Especial", descripcion: "Especial de la casa", precio: "27000" },
+                    { nombre: "Chorizo Doble", descripcion: "2 Carne 125g, tocineta ahumada", precio: "27000" },
+                    { nombre: "Chorizo Fresco Pan KOKY's", descripcion: "Tocinetas 125g, filete de pollo, mozzarella, chorizo, pollo en salsa tártara", precio: "32000" }
+                ]
+            },
+            {
+                categoria: "Promociones",
+                productos: [
+                    { nombre: "Las Hermanas", descripcion: "1 Hamburguesa Super KOKY's + 1 Hamburguesa especial", precio: "50000" },
+                    { nombre: "2 Perros Rancheros + Gaseosa Mini", descripcion: "Combo especial", precio: "40000" },
+                    { nombre: "2 Salchipapas Especiales + 2 Gaseosas Mini", descripcion: "De Locura", precio: "35000" }
+                ]
+            }
+        ];
+
+        function getMenu() {
+            const menu = localStorage.getItem('kokys_menu');
+            return menu ? JSON.parse(menu) : defaultMenu;
+        }
+        function setMenu(menu) {
+            localStorage.setItem('kokys_menu', JSON.stringify(menu));
+        }
+        function renderMenuEditor() {
+            const menu = getMenu();
+            const editor = document.getElementById('menu-editor');
+            editor.innerHTML = '';
+            menu.forEach((cat, catIdx) => {
+                const catDiv = document.createElement('div');
+                catDiv.innerHTML = `<div class='category-title'>${cat.categoria}</div>`;
+                const prodList = document.createElement('div');
+                prodList.className = 'product-list';
+                cat.productos.forEach((prod, prodIdx) => {
+                    const prodDiv = document.createElement('div');
+                    prodDiv.className = 'product-item';
+                    prodDiv.innerHTML = `
+                        <input type='text' value="${prod.nombre}" placeholder='Nombre' onchange='updateProduct(${catIdx},${prodIdx},0,this.value)'>
+                        <input type='text' value="${prod.descripcion}" placeholder='Descripción' onchange='updateProduct(${catIdx},${prodIdx},1,this.value)'>
+                        <input type='number' value="${prod.precio}" placeholder='Precio' min='0' onchange='updateProduct(${catIdx},${prodIdx},2,this.value)'>
+                        <button onclick='deleteProduct(${catIdx},${prodIdx})'>🗑️</button>
+                    `;
+                    prodList.appendChild(prodDiv);
+                });
+                // Formulario para agregar producto
+                const addForm = document.createElement('form');
+                addForm.className = 'add-form';
+                addForm.onsubmit = function(e) {
+                    e.preventDefault();
+                    const nombre = this[0].value.trim();
+                    const descripcion = this[1].value.trim();
+                    const precio = this[2].value.trim();
+                    if(nombre && descripcion && precio) {
+                        addProduct(catIdx, nombre, descripcion, precio);
+                        this.reset();
+                    }
+                };
+                addForm.innerHTML = `
+                    <input type='text' placeholder='Nuevo producto' required>
+                    <input type='text' placeholder='Descripción' required>
+                    <input type='number' placeholder='Precio' min='0' required>
+                    <button type='submit'>Agregar</button>
+                `;
+                catDiv.appendChild(prodList);
+                catDiv.appendChild(addForm);
+                editor.appendChild(catDiv);
+            });
+        }
+        // Funciones globales para los botones
+        window.updateProduct = function(catIdx, prodIdx, field, value) {
+            const menu = getMenu();
+            if(field === 0) menu[catIdx].productos[prodIdx].nombre = value;
+            if(field === 1) menu[catIdx].productos[prodIdx].descripcion = value;
+            if(field === 2) menu[catIdx].productos[prodIdx].precio = value;
+            setMenu(menu);
+        };
+        window.deleteProduct = function(catIdx, prodIdx) {
+            const menu = getMenu();
+            menu[catIdx].productos.splice(prodIdx, 1);
+            setMenu(menu);
+            renderMenuEditor();
+        };
+        window.addProduct = function(catIdx, nombre, descripcion, precio) {
+            const menu = getMenu();
+            menu[catIdx].productos.push({nombre, descripcion, precio});
+            setMenu(menu);
+            renderMenuEditor();
+        };
+        window.saveMenu = function() {
+            alert('¡Menú guardado! Los cambios ya están reflejados en el menú principal.');
+        };
+        // Inicializar
+        renderMenuEditor();
+    </script>
+</body>
+</html>
