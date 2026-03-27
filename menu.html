@@ -346,118 +346,7 @@
         </div>
 
         <div class="content">
-            <!-- Promociones -->
-            <div class="promo-banner">
-                ⭐ ¡PROMOCIONES ESPECIALES! ⭐
-            </div>
-            <div class="menu-grid">
-                <div class="menu-card">
-                    <h3>Las Hermanas</h3>
-                    <p>1 Hamburguesa Super KOKY's + 1 Hamburguesa especial</p>
-                    <span class="price">$50.000</span>
-                </div>
-                <div class="menu-card">
-                    <h3>2 Perros Rancheros + Gaseosa Mini</h3>
-                    <p>Combo especial</p>
-                    <span class="price">$40.000</span>
-                </div>
-                <div class="menu-card">
-                    <h3>2 Salchipapas Especiales + 2 Gaseosas Mini</h3>
-                    <p>De Locura</p>
-                    <span class="price">$35.000</span>
-                </div>
-            </div>
-
-            <h2 class="section-title">Salchipapas y Choripapas</h2>
-            <div class="menu-grid">
-                <div class="menu-card">
-                    <h3>Salchipapa Sencillo</h3>
-                    <p>Papa francesa, salchicha tradicional</p>
-                    <span class="price">$15.000</span>
-                </div>
-                <div class="menu-card">
-                    <h3>Salchipapa Especial</h3>
-                    <p>Papa en salsa, salchicha tradicional</p>
-                    <span class="price">$20.000</span>
-                </div>
-                <div class="menu-card">
-                    <h3>Choripapa Sencillo</h3>
-                    <p>Papa francesa, chorizo ahumado</p>
-                    <span class="price">$18.000</span>
-                </div>
-                <div class="menu-card">
-                    <h3>Choripapa Especial</h3>
-                    <p>Papa en salsa, salchicha, ahumado mozzarella, sal a gusto</p>
-                    <span class="price">$22.000</span>
-                </div>
-            </div>
-
-            <h2 class="section-title">Picadas</h2>
-            <div class="menu-grid">
-                <div class="menu-card">
-                    <h3>Picada Personal</h3>
-                    <p>Carne, pollo, salchicha, papa francesa, queso rallado, salsas, vegetales frescos</p>
-                    <span class="price">$20.000</span>
-                </div>
-                <div class="menu-card">
-                    <h3>Picada Grande</h3>
-                    <p>Carne, pollo, salchicha, papa francesa, queso, chorizo, verduras frescas, mozzarella</p>
-                    <span class="price">$40.000</span>
-                </div>
-            </div>
-
-            <h2 class="section-title">Perros Calientes</h2>
-            <div class="menu-grid">
-                <div class="menu-card">
-                    <h3>Perro Tradicional</h3>
-                    <p>Pan brioche, salchicha, papa</p>
-                    <span class="price">$15.000</span>
-                </div>
-                <div class="menu-card">
-                    <h3>Perro Especial Pollo</h3>
-                    <p>En salsa tártara, papa, cebolla</p>
-                    <span class="price">$20.000</span>
-                </div>
-                <div class="menu-card">
-                    <h3>Perro Ranchero Chorizo</h3>
-                    <p>Queso ahumado, tocineta ahumada, cebolla, grillet</p>
-                    <span class="price">$25.000</span>
-                </div>
-                <div class="menu-card">
-                    <h3>Perro Super KOKY's Carne</h3>
-                    <p>Queso en salsa tártara, papa rápida, tocineta con chorizo, papa francesa</p>
-                    <span class="price">$30.000</span>
-                </div>
-            </div>
-
-            <h2 class="section-title">Hamburguesas</h2>
-            <div class="menu-grid">
-                <div class="menu-card">
-                    <h3>Hamburguesa Tradicional</h3>
-                    <p>Mozza 125g, jamón ahumado, broche</p>
-                    <span class="price">$18.000</span>
-                </div>
-                <div class="menu-card">
-                    <h3>Carne 125g Mix Tártara</h3>
-                    <p>Jamón ahumado, queso mozzarella, papa</p>
-                    <span class="price">$22.000</span>
-                </div>
-                <div class="menu-card">
-                    <h3>Carne 125g Especial</h3>
-                    <p>Especial de la casa</p>
-                    <span class="price">$27.000</span>
-                </div>
-                <div class="menu-card">
-                    <h3>Chorizo Doble</h3>
-                    <p>2 Carne 125g, tocineta ahumada</p>
-                    <span class="price">$27.000</span>
-                </div>
-                <div class="menu-card">
-                    <h3>Chorizo Fresco Pan KOKY's</h3>
-                    <p>Tocinetas 125g, filete de pollo, mozzarella, chorizo, pollo en salsa tártara</p>
-                    <span class="price">$32.000</span>
-                </div>
-
+            <div id="menu-dinamico"></div>
                 
         <footer>
             <p>📍 Bucaramanga, Santander, Colombia</p>
@@ -486,25 +375,67 @@
     </div>
 
     <script>
-        function openModal(imageSrc) {
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            modal.style.display = 'block';
-            modalImg.src = imageSrc;
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('imageModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // Cerrar modal con tecla ESC
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeModal();
+        // Renderizar menú desde localStorage
+        function renderMenu() {
+            const defaultMenu = [
+                {
+                    categoria: "Salchipapas y Choripapas",
+                    productos: [
+                        { nombre: "Salchipapa Sencillo", descripcion: "Papa francesa, salchicha tradicional", precio: "15000" },
+                        { nombre: "Salchipapa Especial", descripcion: "Papa en salsa, salchicha tradicional", precio: "20000" },
+                        { nombre: "Choripapa Sencillo", descripcion: "Papa francesa, chorizo ahumado", precio: "18000" },
+                        { nombre: "Choripapa Especial", descripcion: "Papa en salsa, salchicha, ahumado mozzarella, sal a gusto", precio: "22000" }
+                    ]
+                },
+                {
+                    categoria: "Picadas",
+                    productos: [
+                        { nombre: "Picada Personal", descripcion: "Carne, pollo, salchicha, papa francesa, queso rallado, salsas, vegetales frescos", precio: "20000" },
+                        { nombre: "Picada Grande", descripcion: "Carne, pollo, salchicha, papa francesa, queso, chorizo, verduras frescas, mozzarella", precio: "40000" }
+                    ]
+                },
+                {
+                    categoria: "Perros Calientes",
+                    productos: [
+                        { nombre: "Perro Tradicional", descripcion: "Pan brioche, salchicha, papa", precio: "15000" },
+                        { nombre: "Perro Especial Pollo", descripcion: "En salsa tártara, papa, cebolla", precio: "20000" },
+                        { nombre: "Perro Ranchero Chorizo", descripcion: "Queso ahumado, tocineta ahumada, cebolla, grillet", precio: "25000" },
+                        { nombre: "Perro Super KOKY's Carne", descripcion: "Queso en salsa tártara, papa rápida, tocineta con chorizo, papa francesa", precio: "30000" }
+                    ]
+                },
+                {
+                    categoria: "Hamburguesas",
+                    productos: [
+                        { nombre: "Hamburguesa Tradicional", descripcion: "Mozza 125g, jamón ahumado, broche", precio: "18000" },
+                        { nombre: "Carne 125g Mix Tártara", descripcion: "Jamón ahumado, queso mozzarella, papa", precio: "22000" },
+                        { nombre: "Carne 125g Especial", descripcion: "Especial de la casa", precio: "27000" },
+                        { nombre: "Chorizo Doble", descripcion: "2 Carne 125g, tocineta ahumada", precio: "27000" },
+                        { nombre: "Chorizo Fresco Pan KOKY's", descripcion: "Tocinetas 125g, filete de pollo, mozzarella, chorizo, pollo en salsa tártara", precio: "32000" }
+                    ]
+                },
+                {
+                    categoria: "Promociones",
+                    productos: [
+                        { nombre: "Las Hermanas", descripcion: "1 Hamburguesa Super KOKY's + 1 Hamburguesa especial", precio: "50000" },
+                        { nombre: "2 Perros Rancheros + Gaseosa Mini", descripcion: "Combo especial", precio: "40000" },
+                        { nombre: "2 Salchipapas Especiales + 2 Gaseosas Mini", descripcion: "De Locura", precio: "35000" }
+                    ]
+                }
+            ];
+            const menu = JSON.parse(localStorage.getItem('kokys_menu') || JSON.stringify(defaultMenu));
+            const cont = document.getElementById('menu-dinamico');
+            cont.innerHTML = '';
+            // Promociones primero si existe
+            const promos = menu.find(c => c.categoria.toLowerCase().includes('promo'));
+            if (promos) {
+                cont.innerHTML += `<div class='promo-banner'>⭐ ¡PROMOCIONES ESPECIALES! ⭐</div><div class='menu-grid'>${promos.productos.map(p => `<div class='menu-card'><h3>${p.nombre}</h3><p>${p.descripcion}</p><span class='price'>$${Number(p.precio).toLocaleString('es-CO')}</span></div>`).join('')}</div>`;
             }
-        });
+            // Otras categorías
+            menu.filter(c => !c.categoria.toLowerCase().includes('promo')).forEach(cat => {
+                cont.innerHTML += `<h2 class='section-title'>${cat.categoria}</h2><div class='menu-grid'>${cat.productos.map(p => `<div class='menu-card'><h3>${p.nombre}</h3><p>${p.descripcion}</p><span class='price'>$${Number(p.precio).toLocaleString('es-CO')}</span></div>`).join('')}</div>`;
+            });
+        }
+        renderMenu();
     </script>
 </body>
 </html>
